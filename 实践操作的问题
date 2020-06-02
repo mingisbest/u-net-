@@ -1,1 +1,13 @@
 #存在的问题，1）数据量的确定 2）微球及细胞的多类型分割 3）重合的边界处理
+
+
+#比较重要的是定义loss function 我们使用dice loss,主要思路就是求图像重合部分占比。相关代码如下：
+def dice_coef(y_true, y_pred):
+    y_true_f = K.flatten(y_true)
+    y_pred_f = K.flatten(y_pred)
+    intersection = K.sum(y_true_f * y_pred_f)
+    return (2. * intersection + smooth) / (K.sum(y_true_f) + K.sum(y_pred_f) + smooth)
+
+
+def dice_coef_loss(y_true, y_pred):
+    return -dice_coef(y_true, y_pred)
