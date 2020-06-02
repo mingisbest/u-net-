@@ -490,7 +490,7 @@ model.fit_generator(myGene,steps_per_epoch=300,epochs=1,callbacks=[model_checkpo
 
 #上面一行是利用生成器进行batch_size数量的训练，样本和标签通过myGene传入
 
-testGene = testGenerator("data/membrane/test")
+testGene = testGenerator("C:\\data\\membrane\\test")
 
 results = model.predict_generator(testGene,30,verbose=1)
 
@@ -498,6 +498,6 @@ results = model.predict_generator(testGene,30,verbose=1)
 
 #上面的返回值是：预测值的 Numpy 数组。
 
-saveResult("data/membrane/test",results)#保存结果
+saveResult("C:\\data\\membrane\\test",results)#保存结果
 
  
