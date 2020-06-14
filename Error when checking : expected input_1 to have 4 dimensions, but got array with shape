@@ -1,0 +1,26 @@
+ValueError: Error when checking : expected input_1 to have 4 dimensions, but got array with shape
+ (50, 50, 3)
+
+原因：预测的时候给的是数组，需要转成array，np.asarray(imagelist)
+下面是正确代码：
+————————————————
+版权声明：本文为CSDN博主「ShellCollector」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/jacke121/article/details/79164895
+
+
+path = '../../white_mouse_data/test/1/'
+# path=r"D:\git_project\mouse_detect_demo\mouse_data\0_test\\"
+files = os.listdir(path)
+
+aaa = 0
+index = 0
+imagelist = []
+for file in files:
+    a = cv2.imread(path + file)
+    a=cv2.resize(a,(IMG_SIZE,IMG_SIZE),interpolation=cv2.INTER_CUBIC)
+    imagelist.append(a)
+t0 = time.time()
+result = model.predict(np.asarray(imagelist))
+————————————————
+版权声明：本文为CSDN博主「ShellCollector」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/jacke121/article/details/79164895
