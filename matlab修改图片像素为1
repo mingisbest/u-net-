@@ -1,0 +1,20 @@
+clear all;
+clc;
+OutputDir = 'C:\cell\trainannot-1\';%输出文件夹路径
+%读入所有png格式的图像
+files = dir(fullfile('C:\cell\trainannot\','*.png'));
+lengthFiles = length(files)
+%进行所有图像的遍历
+for n = 1:lengthFiles;
+    Img = imread(strcat('C:\cell\trainannot\',files(n).name));
+    %对读入图像进行像素的遍历
+    for i=1:1:256
+    for j=1:1:256
+        if(Img(i,j)==32)
+            Img(i,j)=1;
+        end
+    end
+    end
+    %单独保存图像
+    imwrite(Img,[OutputDir,int2str(n),'.png']);
+end
